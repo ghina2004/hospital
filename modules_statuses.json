@@ -1,0 +1,7 @@
+{
+    "PatientManagement": true,
+    "DoctorManagement": true,
+    "RoomManagement": true,
+    "MedicalServiceManagement": true,
+    "SurgicalOperationAndAppointment": true
+}

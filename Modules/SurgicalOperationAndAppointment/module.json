@@ -1,0 +1,11 @@
+{
+    "name": "SurgicalOperationAndAppointment",
+    "alias": "surgicaloperationandappointment",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SurgicalOperationAndAppointment\\Providers\\SurgicalOperationAndAppointmentServiceProvider"
+    ],
+    "files": []
+}
