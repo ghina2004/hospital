@@ -25,12 +25,12 @@ class AuthController extends Controller
 
         $token = $user->createToken("API TOKEN")->plainTextToken;
         $data = [];
-        $data['user'] = $user;
+        $data['Patient'] = $user;
         $data['token'] = $token;
         return response()->json([
             'status' => 1,
             'data' => $data,
-            'message' => 'Registered  successfully'
+            'message' => ' Patient Registered  successfully'
         ], 200);
     }
 
@@ -45,18 +45,18 @@ class AuthController extends Controller
             return response()->json([
                 'data' => [],
                 'status' => 0,
-                'message' => 'user_name & password doses not match with our record'
+                'message' => 'Patient user_name & password doses not match with our record'
             ], 405);
         }
         $user = Patient::query()->where('user_name', '=', $userData['user_name'])->first();
         $token = $user->createToken("API TOKEN")->plainTextToken;
         $data = [];
-        $data['user'] = $user;
+        $data['Patient'] = $user;
         $data['token'] = $token;
         return response()->json([
             'status' => 1,
             'data' => $data,
-            'message' => 'logged in successfully'
+            'message' => 'Patient logged in successfully'
         ], 200);
     }
 

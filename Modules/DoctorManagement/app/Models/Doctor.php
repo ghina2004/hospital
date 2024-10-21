@@ -18,10 +18,10 @@ class Doctor extends Authenticatable
 
     protected $fillable = [
         'full_name'
-            ,'birth_date'
-            ,'address'
-            ,'departement_id'
-         ,   'Specialization_id'
+        ,'birth_date'
+        ,'address'
+        ,'departement_id'
+        ,'Specialization_id'
         ,'password',
         'user_name'
     ];

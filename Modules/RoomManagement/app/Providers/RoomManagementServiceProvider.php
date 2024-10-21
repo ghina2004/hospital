@@ -25,6 +25,8 @@ class RoomManagementServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
+      //  $this->loadRoutesFrom(__DIR__.'/../Modules/RoomManagement/Routes/api.php');
+
     }
 
     /**

@@ -16,7 +16,7 @@ class AddDoctorRequest extends FormRequest
             'departement_id'=> ['required', 'exists:departements,id'],
              'Specialization_id'=> ['required', 'exists:specializations,id'],
              'user_name'=>['required','string','unique:doctors,user_name'],
-            'password'=> ['required', 'min:8','max:50','confirmed'],
+            'password'=> ['required', 'min:8','max:50'],
         ];
     }
 

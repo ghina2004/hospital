@@ -13,7 +13,7 @@ class LogInAdminRequest extends FormRequest
     {
         return [
             'user_name'=>['required','string','exists:admins,user_name'],
-            'password'=> ['required', 'min:8','max:50','confirmed'],
+            'password'=> ['required', 'min:8','max:50'],
         ];
     }
 

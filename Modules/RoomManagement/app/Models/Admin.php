@@ -16,6 +16,11 @@ class admin extends  Authenticatable
 
     protected $fillable = ['user_name', 'password'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     // protected static function newFactory(): AdminFactory
     // {
     //     // return AdminFactory::new();

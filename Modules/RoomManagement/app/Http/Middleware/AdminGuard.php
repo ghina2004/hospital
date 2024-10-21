@@ -11,11 +11,13 @@ class AdminGuard
 {
 
     public function handle(Request $request, Closure $next)
-    {
-        if (Auth::guard('admin')->check()) {
-            return $next($request);
-        }
+   {//dd( [ 'user'=> Auth::guard('admin')->check()]);
+
+    if( (Auth::guard('admin')->check())) {
+
+        return $next($request);
+    }
 
         return response()->json(['message' => 'Unauthorized'], 403);
-    }
+   }
 }

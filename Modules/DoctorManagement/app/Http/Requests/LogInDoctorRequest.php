@@ -11,7 +11,7 @@ class LogInDoctorRequest extends FormRequest
     {
         return [
             'user_name'=>['required','string','exists:doctors,user_name'],
-            'password'=> ['required', 'min:8','max:50','confirmed'],
+            'password'=> ['required', 'min:8','max:50'],
         ];
     }
 

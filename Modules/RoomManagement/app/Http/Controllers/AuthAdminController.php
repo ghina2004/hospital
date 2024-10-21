@@ -23,18 +23,18 @@ class AuthAdminController extends Controller
             return response()->json([
                 'data' => [],
                 'status' => 0,
-                'message' => 'user_name & password doses not match with our record'
+                'message' => 'admin user_name & password doses not match with our record'
             ], 405);
         }
         $user = admin::query()->where('user_name', '=', $userData['user_name'])->first();
         $token = $user->createToken("API TOKEN")->plainTextToken;
         $data = [];
-        $data['user'] = $user;
+        $data['admin'] = $user;
         $data['token'] = $token;
         return response()->json([
             'status' => 1,
             'data' => $data,
-            'message' => 'logged in successfully'
+            'message' => 'admin logged in successfully'
         ], 200);
     }
 }
