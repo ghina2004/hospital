@@ -3,63 +3,61 @@
 namespace Modules\RoomManagement\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Modules\PatientManagement\Http\Requests\PatientRequest;
+use Modules\PatientManagement\Models\Patient;
+use Modules\RoomManagement\Http\Requests\LogInAdminRequest;
+use Modules\RoomManagement\Http\Requests\RegisterRequest;
+use Modules\RoomManagement\Models\admin;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function register(RegisterRequest $request): JsonResponse
     {
-        return view('roommanagement::index');
+        $userData = $request->validated();
+
+        $userData['password'] = Hash::make($userData['password']);
+
+        $user = admin::create($userData);
+
+        $token = $user->createToken("API TOKEN")->plainTextToken;
+        $data = [];
+        $data['user'] = $user;
+        $data['token'] = $token;
+        return response()->json([
+            'status' => 1,
+            'data' => $data,
+            'message' => '  Registered  successfully'
+        ], 200);}
+
+    public function login(LogInAdminRequest $request): JsonResponse
+    {
+        $userData = $request->validated();
+
+        if(!Auth::guard('admin')->attempt([
+            'user_name' => $userData['user_name'],
+            'password' => $userData['password']
+        ])) {
+            return response()->json([
+                'data' => [],
+                'status' => 0,
+                'message' => ' user_name & password doses not match with our record'
+            ], 405);
+        }
+
+        $user = admin::query()->where('user_name', '=', $userData['user_name'])->first();
+        $token = $user->createToken("API TOKEN")->plainTextToken;
+        $data = [];
+        $data['user'] = $user;
+        $data['token'] = $token;
+        return response()->json([
+            'status' => 1,
+            'data' => $data,
+            'message' => ' logged in successfully'
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('roommanagement::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('roommanagement::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('roommanagement::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

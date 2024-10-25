@@ -16,7 +16,7 @@ class AuthAdminController extends Controller
     {
         $userData = $request->validated();
 
-        if (!Auth::guard('admin')->attempt([
+        if(!Auth::guard('admin')->attempt([
             'user_name' => $userData['user_name'],
             'password' => $userData['password']
         ])) {
@@ -26,6 +26,7 @@ class AuthAdminController extends Controller
                 'message' => 'admin user_name & password doses not match with our record'
             ], 405);
         }
+
         $user = admin::query()->where('user_name', '=', $userData['user_name'])->first();
         $token = $user->createToken("API TOKEN")->plainTextToken;
         $data = [];

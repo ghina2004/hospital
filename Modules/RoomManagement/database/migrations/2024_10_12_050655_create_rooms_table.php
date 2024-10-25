@@ -12,7 +12,8 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->integer('room_number');
-
+            $table->string('status')->default('vacant');
+            $table->foreignId('departement_id');
             $table->timestamps();
         });
     }

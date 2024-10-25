@@ -3,7 +3,6 @@
 namespace Modules\RoomManagement\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comment;
 use Illuminate\Http\Request;
 use Modules\RoomManagement\Http\Requests\CreateDepartementRequest;
 use Modules\RoomManagement\Models\Departement;

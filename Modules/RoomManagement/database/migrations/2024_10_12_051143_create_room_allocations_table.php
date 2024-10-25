@@ -6,21 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('room_allocations', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('room_id');
+             $table->foreignId('patient_id');
+             $table->date('assigned_at');
+            $table->date('released_at');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('room_allocations');

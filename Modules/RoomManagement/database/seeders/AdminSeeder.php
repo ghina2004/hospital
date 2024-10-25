@@ -2,18 +2,21 @@
 
 namespace Modules\RoomManagement\Database\Seeders;
 
+use http\Client\Curl\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Modules\RoomManagement\Models\admin;
+
 
 class AdminSeeder extends Seeder
 {
 
     public function run(): void
     {
-       admin::query()->create([
+      admin::query()->create([
            'user_name'=> 'fadi_1919',
-          'password'=> Hash::make('far44888')
+          'password'=> Hash::make('far44888'),
+           'role' => '1'
        ]);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\RoomManagement\Models\RoomAllocation;
 
 class Patient extends Authenticatable
 {
@@ -33,6 +34,10 @@ class Patient extends Authenticatable
             'password' => 'hashed',
         ];
     }
+   public function roomAllocations()
+ {
+    return $this->hasMany( RoomAllocation ::class);
+}
 //    protected function customCasts(): array
 //    {
 //        return [

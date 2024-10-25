@@ -4,31 +4,23 @@ namespace Modules\RoomManagement\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\RoomManagement\Http\Requests\CreateRoomRequest;
+use Modules\RoomManagement\Models\Room;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return view('roommanagement::index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('roommanagement::create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(CreateRoomRequest $request)
+    {           $roomData= $request->validated();
+
+        $room = Room::query()->create($roomData);
+
     }
 
     /**

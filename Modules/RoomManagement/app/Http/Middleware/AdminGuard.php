@@ -13,6 +13,7 @@ class AdminGuard
     public function handle(Request $request, Closure $next)
    {//dd( [ 'user'=> Auth::guard('admin')->check()]);
 
+
     if( (Auth::guard('admin')->check())) {
 
         return $next($request);

@@ -14,11 +14,15 @@ class admin extends  Authenticatable
     use HasFactory,HasApiTokens;
 
 
-    protected $fillable = ['user_name', 'password'];
+    protected $fillable = ['user_name', 'password','role'];
 
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
     // protected static function newFactory(): AdminFactory
